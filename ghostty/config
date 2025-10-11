@@ -1,23 +1,13 @@
-# theme = catppuccin-mocha
-# theme = GruvboxDark
-# theme = catppuccin-mocha.conf 
-theme = tokyonight_moon
-
-# font-family = Google Sans Code
-# font-family-bold = Google Sans Code Bold
-# font-family-italic = Google Sans Code Italic
-# font-family-bold-italic = Google Sans Code Bold Italic
-
-# font-family = CaskaydiaCove Nerd Font 
+theme = light:Rose Pine Dawn,dark:Rose Pine
 
 font-family = "JetBrainsMono Nerd Font"
 font-family-bold = "JetBrainsMono Nerd Font Bold"
-font-family-italic = "JetBrainsMono Nerd Font Italic"
+font-family-italic = "JetBrainsMono Nerd Fnot Italic"
 font-family-bold-italic = "JetBrainsMono Nerd Font Bold Italic"
 
 font-size = 13
 
-gtk-titlebar = false
+background-opacity = 0.95
 
 cursor-style = block
 cursor-style-blink = false

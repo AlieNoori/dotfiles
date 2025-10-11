@@ -1,0 +1,25 @@
+#!/bin/bash
+MONITOR="eDP-1"
+RES="1920x1080"
+POS="auto"
+SCALE="1.2"
+
+check_and_set() {
+  BAT_STATUS=$(cat /sys/class/power_supply/BAT0/status)
+  AC_ONLINE=$(cat /sys/class/power_supply/ACAD/online)
+
+  if [[ "$AC_ONLINE" == "1" && "$BAT_STATUS" == "Full" ]]; then
+    hyprctl keyword monitor "$MONITOR,${RES}@144,$POS,$SCALE"
+  else
+    hyprctl keyword monitor "$MONITOR,${RES}@60,$POS,$SCALE"
+  fi
+}
+
+if [[ "$1" == "--loop" ]]; then
+  while true; do
+    check_and_set
+    sleep 180
+  done
+else
+  check_and_set
+fi

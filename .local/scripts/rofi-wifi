@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Get list of Wi-Fi networks
+wifi_list=$(nmcli -t -f SSID dev wifi list | awk -F: '!seen[$1]++ {print $1}' | sed '/^$/d')
+
+# Let user pick a network via rofi-wayland
+chosen=$(echo "$wifi_list" | rofi -dmenu -p "Wi-Fi SSID")
+
+# Exit if nothing chosen
+[ -z "$chosen" ] && exit
+
+# Check if this SSID already has a saved connection
+if nmcli connection show | grep -q "$chosen"; then
+  # Try to connect using saved config
+  nmcli connection up "$chosen"
+else
+  # Prompt for password
+  pass=$(rofi -dmenu -password -p "Password for $chosen")
+  [ -z "$pass" ] && exit
+  nmcli dev wifi connect "$chosen" password "$pass"
+fi
